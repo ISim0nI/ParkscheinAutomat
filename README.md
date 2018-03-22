@@ -1,0 +1,2 @@
+# ParkscheinAutomat
+Just for fun
