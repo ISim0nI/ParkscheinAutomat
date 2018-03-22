@@ -6,7 +6,7 @@ public class ParkscheinDatenbank {
 
     private int gesammtMuenze;
     private int restgeld;
-    private int parkdauer=0;
+    private int parkdauer=30;
 
 
 

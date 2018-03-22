@@ -11,7 +11,7 @@ public class ParkscheinSystem extends ParkscheinDatenbank {
 
     /**
      * überpruft eingabe der richtigen münzen und parameter.
-     * fuhrt entsprechende methode bei den parametern aus Parkdauer korrigeiren , parkschein Anfordern oder weiter
+     * fuhrt entsprechende methode bei den parametern aus Parkdauer korrigeiren , parkschein Anfordern , 30 min gratig ticket oder weiter
      * das eingeworfene geld entgegennehmen.
      */
     public void muenzeAddiert() {
@@ -33,7 +33,11 @@ public class ParkscheinSystem extends ParkscheinDatenbank {
                     if (a == -3) {
 
                         parkscheinAnforderung(inEuro(getGesammtMuenze()), parkdauerMin(getParkdauer()), dateTime(getParkdauer()), getRestgeld());
-                        break;
+                        setRestgeld(0);
+                        setParkdauer(30);
+                        setGesammtMuenze(0);
+
+
                     }
                     if (a == 10 || a == 20 || a == 50 || a == 100 || a == 200) {
                         int add = getGesammtMuenze();
@@ -83,6 +87,8 @@ public class ParkscheinSystem extends ParkscheinDatenbank {
 
     public int parkdauerAnhandGuthaben(int guthaben) {
 
+        guthaben += getParkdauer();
+
         setParkdauer(guthaben);
         return guthaben;
     }
@@ -127,13 +133,13 @@ public class ParkscheinSystem extends ParkscheinDatenbank {
 
         }else if (eingabewert==-1) System.out.println("Nicht genug Geld!");
 
-        if (eingabewert==-2&& Parkdauer-10 >= 0){
+        if (eingabewert==-2&& Parkdauer-10 >= 30){
             setParkdauer(Parkdauer-10);
             restgeld +=10;
             setRestgeld(restgeld);
             bildAusgabe(inEuro(getGesammtMuenze()), parkdauerMin(getParkdauer()), dateTime(getParkdauer()), inEuro(getRestgeld()));
 
-        }else if(eingabewert==-2) System.out.println("Weniger als 0 minuten geht nicht!");
+        }else if(eingabewert==-2) System.out.println("Weniger geht nicht!");
 
 
         System.out.println("Korrektur Abgeschlossen");
